@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+dist/
+build/
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Docker
+*.local
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# VSCode
+.vscode/
+
+# Jest
+coverage/
+
+# Misc
+*.log
+*.swp
+.idea/
+
+# Ignore local scripts (optional, if you don't want to commit seed data)
+src/scripts/seed.ts
