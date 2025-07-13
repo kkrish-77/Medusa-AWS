@@ -20,7 +20,6 @@ resource "aws_ecs_task_definition" "app" {
     {
       name  = "medusa"
       image = "kkrish77/medusa-app:latest"
-      
       portMappings = [
         {
           containerPort = 9000
@@ -28,14 +27,17 @@ resource "aws_ecs_task_definition" "app" {
           protocol      = "tcp"
         }
       ]
-
       environment = [
-        {
-          name  = "NODE_ENV"
-          value = "production"
-        }
+        { name = "MEDUSA_ADMIN_ONBOARDING_TYPE", value = "default" },
+        { name = "STORE_CORS", value = "http://localhost:8000,https://docs.medusajs.com" },
+        { name = "ADMIN_CORS", value = "http://localhost:5173,http://localhost:9000,https://docs.medusajs.com" },
+        { name = "AUTH_CORS", value = "http://localhost:5173,http://localhost:9000,http://localhost:8000,https://docs.medusajs.com" },
+        { name = "JWT_SECRET", value = "f46b7df7c79b67b9692374f69cf5b834316edd1a4041d47f7226108f09b20486" },
+        { name = "COOKIE_SECRET", value = "a6bf071c022c10d291203583d6fd995e12277f6c67063a50c27ca29cd6a4dc2c" },
+        { name = "DATABASE_URL", value = "postgres://medusauser:YourStrongPassword123!@terraform-20250713134507130700000001.c8t6y6agg9l8.us-east-1.rds.amazonaws.com:5432/medusadb?ssl=true" },
+        { name = "NODE_TLS_REJECT_UNAUTHORIZED", value = "0" },
+        { name = "MEDUSA_LOG_LEVEL", value = "verbose" }
       ]
-
       logConfiguration = {
         logDriver = "awslogs"
         options = {
